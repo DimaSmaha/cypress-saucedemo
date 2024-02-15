@@ -1,9 +1,14 @@
 import inventoryPage from "cypress/pageobjects/inventoryPage";
 import loginPage from "cypress/pageobjects/loginPage";
-import { userData, backpackItemName } from "../../fixtures/data.json";
+import {
+  userData,
+  backpackItemName,
+  loginErrorText,
+} from "../../fixtures/data.json";
+
 describe("Login tests", () => {
   beforeEach(() => {
-    cy.visit("/");
+    loginPage.openLoginPage();
   });
 
   it("The user should login with valid data", () => {
@@ -13,5 +18,11 @@ describe("Login tests", () => {
     inventoryPage.getBackbackItem.should("have.text", backpackItemName);
   });
 
-  it("The application should show an error with invalid data", () => {});
+  it("The application should show an error with invalid data", () => {
+    loginPage.fillUserNameInput(userData.correctUserLogin);
+    loginPage.fillPasswordInput("111111");
+    loginPage.clickLoginButton();
+    loginPage.getLoginError.should("be.visible");
+    loginPage.getLoginError.should("have.text", loginErrorText);
+  });
 });

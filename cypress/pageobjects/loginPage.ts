@@ -1,6 +1,10 @@
 import Common from "./common";
 
 class LoginPage extends Common {
+  public openLoginPage(): void {
+    super.openPage("/");
+  }
+
   get getUserNameInput(): Cypress.Chainable<JQuery<HTMLElement>> {
     return cy.getByTestId("username");
   }
@@ -11,6 +15,10 @@ class LoginPage extends Common {
 
   get getLoginButton(): Cypress.Chainable<JQuery<HTMLElement>> {
     return cy.getByTestId("login-button");
+  }
+
+  get getLoginError(): Cypress.Chainable<JQuery<HTMLElement>> {
+    return cy.getByTestId("error");
   }
 
   public fillUserNameInput(userName: string): void {
