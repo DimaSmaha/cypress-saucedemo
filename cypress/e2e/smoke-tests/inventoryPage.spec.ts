@@ -16,6 +16,17 @@ describe("InventoryPage tests", () => {
     inventoryPage.assertCartLogoItems(1);
   });
 
+  it("The user should add multiple items to the card", () => {
+    inventoryPage.getBackbackItem.should(
+      "have.text",
+      inventoryPageData.backpackItemName
+    );
+    inventoryPage.clickBackbackAddItemButton();
+    inventoryPage.assertCartLogoItems(1);
+    inventoryPage.clickBikeLightsAddItemButton();
+    inventoryPage.assertCartLogoItems(2);
+  });
+
   it("The user should remove item from the card", () => {
     inventoryPage.getBackbackItem.should(
       "have.text",

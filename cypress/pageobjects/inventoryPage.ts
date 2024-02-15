@@ -9,6 +9,10 @@ class InventoryPage extends Common {
     return cy.getByTestId("add-to-cart-sauce-labs-backpack");
   }
 
+  get getBikeLightsAddItemButton(): Cypress.Chainable<JQuery<HTMLElement>> {
+    return cy.getByTestId("add-to-cart-sauce-labs-bike-light");
+  }
+
   get getBackbackRemoveItemButton(): Cypress.Chainable<JQuery<HTMLElement>> {
     return cy.getByTestId("remove-sauce-labs-backpack");
   }
@@ -19,6 +23,10 @@ class InventoryPage extends Common {
 
   public clickBackbackAddItemButton(): void {
     this.getBackbackAddItemButton.click();
+  }
+
+  public clickBikeLightsAddItemButton(): void {
+    this.getBikeLightsAddItemButton.click();
   }
 
   public clickBackbackRemoveItemButton(): void {
