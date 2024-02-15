@@ -11,6 +11,7 @@ export default defineConfig({
       // implement node event listeners here
     },
     specPattern: "cypress/e2e/smoke-tests/*.spec.ts",
+    video: true,
   },
   retries: {
     runMode: 3,
