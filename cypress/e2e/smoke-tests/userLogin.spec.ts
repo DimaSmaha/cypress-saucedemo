@@ -18,9 +18,17 @@ describe("Login tests", () => {
     inventoryPage.getBackbackItem.should("have.text", backpackItemName);
   });
 
-  it("The application should show an error with invalid data", () => {
+  it("The application should show an error with invalid password", () => {
     loginPage.fillUserNameInput(userData.correctUserLogin);
     loginPage.fillPasswordInput("111111");
+    loginPage.clickLoginButton();
+    loginPage.getLoginError.should("be.visible");
+    loginPage.getLoginError.should("have.text", loginErrorText);
+  });
+
+  it("The application should show an error with invalid password", () => {
+    loginPage.fillUserNameInput("123456");
+    loginPage.fillPasswordInput(userData.userPassword);
     loginPage.clickLoginButton();
     loginPage.getLoginError.should("be.visible");
     loginPage.getLoginError.should("have.text", loginErrorText);
