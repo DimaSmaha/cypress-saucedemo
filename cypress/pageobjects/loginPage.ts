@@ -1,8 +1,15 @@
 import Common from "./common";
-
+import { userData } from "../fixtures/data.json";
 class LoginPage extends Common {
   public openLoginPage(): void {
     super.openPage("/");
+  }
+
+  public loginWithValidData(): void {
+    super.openPage("/");
+    this.fillUserNameInput(userData.correctUserLogin);
+    this.fillPasswordInput(userData.userPassword);
+    this.clickLoginButton();
   }
 
   get getUserNameInput(): Cypress.Chainable<JQuery<HTMLElement>> {
