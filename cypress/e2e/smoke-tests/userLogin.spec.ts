@@ -2,8 +2,8 @@ import inventoryPage from "cypress/pageobjects/inventoryPage";
 import loginPage from "cypress/pageobjects/loginPage";
 import {
   userData,
-  backpackItemName,
-  loginErrorText,
+  inventoryPageData,
+  errorTexts,
 } from "../../fixtures/data.json";
 
 describe("Login tests", () => {
@@ -15,7 +15,10 @@ describe("Login tests", () => {
     loginPage.fillUserNameInput(userData.correctUserLogin);
     loginPage.fillPasswordInput(userData.userPassword);
     loginPage.clickLoginButton();
-    inventoryPage.getBackbackItem.should("have.text", backpackItemName);
+    inventoryPage.getBackbackItem.should(
+      "have.text",
+      inventoryPageData.backpackItemName
+    );
   });
 
   it("The application should show an error with invalid password", () => {
@@ -23,14 +26,14 @@ describe("Login tests", () => {
     loginPage.fillPasswordInput("111111");
     loginPage.clickLoginButton();
     loginPage.getLoginError.should("be.visible");
-    loginPage.getLoginError.should("have.text", loginErrorText);
+    loginPage.getLoginError.should("have.text", errorTexts.loginErrorText);
   });
 
-  it("The application should show an error with invalid password", () => {
+  it("The application should show an error with invalid login", () => {
     loginPage.fillUserNameInput("123456");
     loginPage.fillPasswordInput(userData.userPassword);
     loginPage.clickLoginButton();
     loginPage.getLoginError.should("be.visible");
-    loginPage.getLoginError.should("have.text", loginErrorText);
+    loginPage.getLoginError.should("have.text", errorTexts.loginErrorText);
   });
 });
