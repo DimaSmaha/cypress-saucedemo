@@ -17,6 +17,7 @@ jobs:
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v6
         with:
+          config-file: smoke.config.ts
           record: true
           parallel: true # Runs test in parallel using settings above
         env:
